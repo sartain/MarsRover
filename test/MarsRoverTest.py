@@ -41,37 +41,21 @@ class MarsRoverTest(unittest.TestCase):
         self.northRover.move("")
         self.assertEqual([4, 7], self.northRover.position())
 
-    def test_move_mars_rover_forward_north(self):
-        self.northRover.move("F")
-        self.assertEqual([4, 8], self.northRover.position())
+    def test_move_forward(self):
+        param_list = [self.northRover, self.southRover, self.eastRover, self.westRover]
+        position_after_list = [[4, 8], [4, 6], [5, 7], [3, 7]]
+        for index, rover in enumerate(param_list):
+            with self.subTest():
+                rover.move("F")
+                self.assertEqual(position_after_list[index], rover.position())
 
-    def test_move_mars_rover_backward_north(self):
-        self.northRover.move("B")
-        self.assertEqual([4, 6], self.northRover.position())
-
-    def test_move_mars_rover_forward_south(self):
-        self.southRover.move("F")
-        self.assertEqual([4, 6], self.southRover.position())
-
-    def test_move_mars_rover_backward_south(self):
-        self.southRover.move("B")
-        self.assertEqual([4, 8], self.southRover.position())
-
-    def test_move_mars_rover_forward_east(self):
-        self.eastRover.move("F")
-        self.assertEqual([5, 7], self.eastRover.position())
-
-    def test_move_mars_rover_backward_east(self):
-        self.eastRover.move("B")
-        self.assertEqual([3, 7], self.eastRover.position())
-
-    def test_move_mars_rover_forward_west(self):
-        self.westRover.move("F")
-        self.assertEqual([3, 7], self.westRover.position())
-
-    def test_move_mars_rover_backward_west(self):
-        self.westRover.move("B")
-        self.assertEqual([5, 7], self.westRover.position())
+    def test_move_backward(self):
+        param_list = [self.northRover, self.southRover, self.eastRover, self.westRover]
+        position_after_list = [[4, 6], [4, 8], [3, 7], [5, 7]]
+        for index, rover in enumerate(param_list):
+            with self.subTest():
+                rover.move("B")
+                self.assertEqual(position_after_list[index], rover.position())
 
     def test_change_direction_north_right(self):
         self.northRover.move("R")
